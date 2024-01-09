@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevQon</title>
+    <link rel="stylesheet" href="./assets/styles/devqon.scss" />
+
+  </head>
+  <body>
+    <h1 id="header">loading...</h1>
+    <div>
+      <p>Splash screen will display until dismissed.</p>
+      <p>Should check and do one of the following while this screen is displayed</p>
+      <ul>
+        <li>does <code>~/.dq/development-console</code> directory exist
+        <ul><li>If not - display first-run screen</li></ul></li>
+        <li>do projects exist
+          <ul><li>If not - display configuration screen</li></ul></li>
+        </li>
+        <li>is there an active project
+          <ul><li>If not - display project selection screen</li></ul></li>
+        </li>
+        <li>display active project</li>
+      </ul>
+    </div>
+
+    <script type="module" src="./scripts/devqon.ts"></script>
+  </body>
+</html>
