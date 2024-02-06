@@ -1,0 +1,40 @@
+[workspace]
+resolver = "2"
+members = [
+    "./workspaces/enhancements",
+    "./workspaces/utils"
+]
+[workspace.package]
+version = "0.1.0-pre-release"
+edition = "2021"
+authors = ["downquark <development.qonsole@downquark.work>"]
+
+[package]
+name = "devqon"
+version = "0.1.0-pre-release"
+description = "DownQuark Development Qonsole"
+authors = ["downquark <development.qonsole@downquark.work>"]
+license = "GNU"
+repository = "https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon"
+default-run = "devqon"
+edition = "2021"
+rust-version = "1.64"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-alpha.13", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0-alpha.20", features = ["icon-ico", "tray-icon"] }
+tauri-plugin-shell = "2.0.0-alpha.6"
+serde_json = "1.0"
+
+# workspace dependencies
+enhancements = { path = "./workspaces/enhancements" }
+utils = { path = "./workspaces/utils" }
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

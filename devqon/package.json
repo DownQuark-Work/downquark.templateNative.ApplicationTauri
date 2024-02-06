@@ -1,0 +1,35 @@
+{
+  "name": "devqon",
+  "version": "0.1.0-pre-release",
+  "author": "downquark",
+  "source": "src-ui/index.html",
+  "scripts": {
+    "build": "parcel build",
+    "dev:deprecated": "NODE_OPTIONS=--trace-deprecation parcel",
+    "dev:note":"if yarn tauri dev is active up, try deleting `.parce-cache`, `dist`, _and_ `node_modules` and trying again",
+    "dev": "parcel",
+    "dev:x": "parcel src-ui/index.html",
+    "preview": "vite preview",
+    "tauri:_note": "the below 'tauri' scripts are equivalent to `% cargo tauri build|dev|etc`",
+    "tauri:build": "tauri build",
+    "tauri:dev": "tauri dev",
+    "tauri:info": "tauri info",
+    "tauri": "tauri",
+    "td": "tauri dev",
+    "test:report": "playwright show-report __specs__/report",
+    "test:ui": "playwright test --ui",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0-alpha.13",
+    "@tauri-apps/plugin-shell": "^2.0.0-alpha.3",
+    "lit": "^3.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.11.0",
+    "@playwright/test": "^1.40.1",
+    "@tauri-apps/cli": "^2.0.0-alpha.20",
+    "parcel": "^2.11.0",
+    "typescript": "^5.0.2"
+  }
+}

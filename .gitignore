@@ -135,4 +135,4 @@ dist
 _notes/.ignored/
 
 # Playwright
-__specs__/r*
+**/__specs__/r*

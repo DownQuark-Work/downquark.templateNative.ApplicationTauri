@@ -1,0 +1,2 @@
+this directory will expand to hold separate commands for each applicable `mechanism` and `widget`.
+`_devqon` will be a controller for all of them ... or at least have the ability to be... still working on the ins-and-outs
