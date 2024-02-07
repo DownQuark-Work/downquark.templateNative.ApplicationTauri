@@ -1,28 +1,5 @@
 {
-  "build": {
-    "beforeDevCommand": "yarn dev",
-    "beforeBuildCommand": "yarn build",
-    "devPath": "http://localhost:1234",
-    "distDir": "../dist",
-    "withGlobalTauri": false
-  },
-  "package": {
-    "productName": "devqon",
-    "version": "0.1.0-pre-release"
-  },
-  "tauri": {
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "work.downquark.devqon",
-      "icon": [
-        "icons/_downquark/32x32.png",
-        "icons/_downquark/128x128.png",
-        "icons/_downquark/128x128@2x.png",
-        "icons/_downquark/icon.icns",
-        "icons/_downquark/icon.ico"
-      ]
-    },
+  "app": {
     "security": {
       "csp": null
     },
@@ -38,17 +15,38 @@
       },
       {
         "alwaysOnTop": true,
-        "width": 600,
-        "height": 400,
         "decorations": false,
+        "height": 400,
+        "label": "splashscreen",
         "url": "splash.html",
-        "label": "splashscreen"
+        "width": 600
       }
-    ]
+    ],
+    "withGlobalTauri": false
   },
+  "build": {
+    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "yarn dev",
+    "devUrl": "http://localhost:1234",
+    "frontendDist": "../dist"
+  },
+  "bundle": {
+    "active": true,
+    "icon": [
+      "icons/_downquark/32x32.png",
+      "icons/_downquark/128x128.png",
+      "icons/_downquark/128x128@2x.png",
+      "icons/_downquark/icon.icns",
+      "icons/_downquark/icon.ico"
+    ],
+    "targets": "all"
+  },
+  "identifier": "work.downquark.devqon",
   "plugins": {
     "shell": {
       "open": true
     }
-  }
+  },
+  "productName": "devqon",
+  "version": "0.0.1"
 }

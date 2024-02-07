@@ -1,12 +1,14 @@
 {
   "name": "devqon",
-  "version": "0.1.0-pre-release",
+  "version": "0.0.1",
   "author": "downquark",
   "source": "src-ui/index.html",
+  "license": "MIT",
   "scripts": {
     "build": "parcel build",
     "dev:deprecated": "NODE_OPTIONS=--trace-deprecation parcel",
-    "dev:note":"if yarn tauri dev is active up, try deleting `.parce-cache`, `dist`, _and_ `node_modules` and trying again",
+    "dev:note": "if yarn tauri dev is active up, try deleting `.parcel-cache`, `dist`, _and_ `node_modules` and trying again",
+    "--> SIGSEGV":"SIGSEGV is usually the error thrown when the above needs to happen",
     "dev": "parcel",
     "dev:x": "parcel src-ui/index.html",
     "preview": "vite preview",
@@ -21,14 +23,14 @@
     "test": "playwright test"
   },
   "dependencies": {
-    "@tauri-apps/api": "^2.0.0-alpha.13",
-    "@tauri-apps/plugin-shell": "^2.0.0-alpha.3",
+    "@tauri-apps/api": "^2.0.0-beta.0",
+    "@tauri-apps/plugin-shell": "^2.0.0-beta",
     "lit": "^3.1.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.11.0",
     "@playwright/test": "^1.40.1",
-    "@tauri-apps/cli": "^2.0.0-alpha.20",
+    "@tauri-apps/cli": "^2.0.0-beta.1",
     "parcel": "^2.11.0",
     "typescript": "^5.0.2"
   }

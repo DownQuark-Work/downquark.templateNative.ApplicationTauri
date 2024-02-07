@@ -4,7 +4,7 @@ use std::{
 };
 use tauri::{
   Icon,Manager,
-  menu::{CheckMenuItem, MenuBuilder, MenuItemBuilder, PredefinedMenuItem},
+  menu::{CheckMenuItemBuilder, MenuBuilder, MenuItemBuilder, PredefinedMenuItem},
   tray::{ClickType, TrayIconBuilder},
 };
 
@@ -23,7 +23,7 @@ struct ApplicationWindow {
   fn toggle_system_tray_hide_menu_item(app_handle: &tauri::AppHandle) {
   let app_state_window = app_handle.state::<ApplicationWindow>();
   let app_state_window_visible = app_state_window.visible.lock().unwrap();
-  if let Some(window) = app_handle.get_window("main") {
+  if let Some(window) = app_handle.get_webview_window("main") {
     let current_state_enum;
     if*(app_state_window_visible) {
       window.hide().unwrap();
@@ -42,7 +42,7 @@ struct ApplicationWindow {
 fn synchronize_state_system_tray_visibility<R: tauri::Runtime>(toggle_menu_item:tauri::menu::MenuItem<R>) {
   let app_handle = toggle_menu_item.app_handle();
   let app_state_window = app_handle.state::<ApplicationWindow>();
-  if let Some(window) = app_handle.get_window("main") {
+  if let Some(window) = app_handle.get_webview_window("main") {
     match window.is_visible() {
       Err(why) => { println!("ERROR::window_visible: {:?}", why) },
       Ok(visible) => {
@@ -58,13 +58,13 @@ pub fn create_system_tray(app:&tauri::App) -> Result<tauri::AppHandle,tauri::Err
   let managed_history:HashMap<u128, enumerate::EnumStateAppWindow> = HashMap::from([(std_time::epoch_ms(),enumerate::EnumStateAppWindow::START)]);
   app.manage(ApplicationWindow { visible: true.into(), history:managed_history.into()}); // TODO: evaluate if this needs to be managed by `app`
 
-  let mnu_itm_toggle_visibility = MenuItemBuilder::with_id(&enumerate::EnumAppElement::MenuItemVisible.get_id(), "Hide").build(app);
-  let breakline = PredefinedMenuItem::separator(app);
-  let show = MenuItemBuilder::with_id("quit", "Quit").build(app);
-  
+  let mnu_itm_toggle_visibility = MenuItemBuilder::with_id(&enumerate::EnumAppElement::MenuItemVisible.get_id(), "Hide").build(app)?;
+  let breakline = PredefinedMenuItem::separator(app)?;
+  let show = MenuItemBuilder::with_id("quit", "Quit").build(app)?;
+
   let menu = MenuBuilder::with_id(app,&enumerate::EnumAppElement::MenuAttachedToTray.get_id())
               .items(&[&mnu_itm_toggle_visibility,&breakline,&show])
-              .item(&CheckMenuItem::new(app, "no click", false, false, None),)
+              .item(&CheckMenuItemBuilder::new("no click",).build(app)?,)
               .check("curvis", "current vision") // shorthand, have to use defaults
             .build()?;
   let _tray = TrayIconBuilder::with_id(&enumerate::EnumAppElement::TrayMenuAndIcon.get_id())
@@ -79,7 +79,7 @@ pub fn create_system_tray(app:&tauri::App) -> Result<tauri::AppHandle,tauri::Err
             synchronize_state_system_tray_visibility(mnu_itm_toggle_visibility.clone()) }
           if event.click_type == ClickType::Right {
             let app = tray.app_handle();
-            if let Some(window) = app.get_window("main") {
+            if let Some(window) = app.get_webview_window("main") {
               let _ = window.show();
               let _ = window.set_focus();
               synchronize_state_system_tray_visibility(mnu_itm_toggle_visibility.clone())

@@ -1,3 +1,7 @@
+# https://beta.tauri.app/references/v2/config/
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# Permissions: https://beta.tauri.app/references/v2/acl/
+
 [workspace]
 resolver = "2"
 members = [
@@ -5,13 +9,13 @@ members = [
     "./workspaces/utils"
 ]
 [workspace.package]
-version = "0.1.0-pre-release"
+version = "0.0.1"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
 [package]
 name = "devqon"
-version = "0.1.0-pre-release"
+version = "0.0.1"
 description = "DownQuark Development Qonsole"
 authors = ["downquark <development.qonsole@downquark.work>"]
 license = "GNU"
@@ -20,14 +24,14 @@ default-run = "devqon"
 edition = "2021"
 rust-version = "1.64"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# https://beta.tauri.app/guides/develop/updating-dependencies/
 
 [build-dependencies]
-tauri-build = { version = "2.0.0-alpha.13", features = [] }
+tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0-alpha.20", features = ["icon-ico", "tray-icon"] }
-tauri-plugin-shell = "2.0.0-alpha.6"
+tauri = { version = "2.0.0-beta", features = ["icon-ico", "tray-icon"] }
+tauri-plugin-shell = "2.0.0-beta"
 serde_json = "1.0"
 
 # workspace dependencies
@@ -38,3 +42,7 @@ utils = { path = "./workspaces/utils" }
 # this feature is used for production builds or when `devPath` points to the filesystem
 # DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
+
+[lib]
+name = "devqon_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]

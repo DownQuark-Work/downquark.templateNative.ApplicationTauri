@@ -3,7 +3,7 @@ pub enum EnumAppElement {
   IconDq, IconBusy,
   MenuItemVisible, MenuAttachedToTray,
   TrayMenuAndIcon,
-  WindowMain, WindowSplasScreen,
+  WindowMain, WindowSplashScreen,
 }
 impl EnumAppElement {
   pub fn get_id(&self) -> String {
@@ -12,7 +12,7 @@ impl EnumAppElement {
       Self::MenuItemVisible => "TOGGLE_VISIBILITY".to_string(),
       Self::TrayMenuAndIcon => "DQ_DEVQON_MENU_TRAY_MAIN".to_string(),
       Self::WindowMain => "main".to_string(),
-      Self::WindowSplasScreen => "splashscreen".to_string(),
+      Self::WindowSplashScreen => "splashscreen".to_string(),
       _ => "".to_string()
     }
   }
